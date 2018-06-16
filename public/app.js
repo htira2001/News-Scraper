@@ -7,6 +7,17 @@ $.getJSON("/articles", function(data) {
     }
   });
   
+  // Scrapes whenever someone clicks the word scrape //
+  $(document).on("click", "#scrape", function() {
+      $("#articles").empty();
+
+      $.ajax({
+          method: "GET", 
+          url: "/scrape"
+      }).done(function(data) {
+          window.location = "/"
+      });
+  });
   
   // Whenever someone clicks a p tag
   $(document).on("click", "p", function() {
@@ -18,7 +29,7 @@ $.getJSON("/articles", function(data) {
     // Now make an ajax call for the Article
     $.ajax({
       method: "GET",
-      url: "/articles/" + thisId
+      url: "/Articles/" + thisId
     })
       // With that done, add the note information to the page
       .then(function(data) {
