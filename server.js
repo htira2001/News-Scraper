@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Make public a static dir //
-app.use(express.static("public"));
+app.use(express.static(__dirname + 'public'));
 
 // Set Handlebars //
 var exphbs = require("express-handlebars");
@@ -66,7 +66,7 @@ app.get("/", function(req, res) {
             article: data
         };
         console.log(hbsObject);
-        res.render("home", hbsObject);
+        res.render("homepage", hbsObject);
     });
 });
 
@@ -79,7 +79,7 @@ app.get("/saved", function(req, res) {
     });
 });
 
-// A GET request to scrape the echojs website
+// A GET request to scrape the New York Times website
 app.get("/scrape", function(req, res) {
     // First, we grab the body of the html with request
     request("https://www.nytimes.com/", function(error, response, html) {
@@ -104,7 +104,7 @@ app.get("/scrape", function(req, res) {
             entry.save(function(err, doc) {
                 // Log any errors
                 if (err) {
-                    console.log(err);
+                    console.log('Data already saved!');
                 }
                 // Or log the doc
                 else {
