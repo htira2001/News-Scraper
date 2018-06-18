@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Make public a static dir //
-app.use(express.static(__dirname + 'public'));
+app.use(express.static('public'));
 
 // Set Handlebars //
 var exphbs = require("express-handlebars");
