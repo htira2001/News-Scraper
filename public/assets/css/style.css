@@ -1,13 +1,18 @@
 
+body {
+    background-image: url("../../images/world-newspapers.jpg");
+}
+
 #bodyinput {
     width: 50%;
 }
 
 .jumbotron {
+    background-color: red;
 	overflow: hidden;
     background-size: 50%;
     background-position: center;
-    background-image: url('../images/gty_new_york_times_ll_130827_16x9_992.jpg');
+    background-image: url("../../images/smoke.jpeg");
     background-repeat: no-repeat;
     height: 400px;
     width: 100%;
@@ -24,6 +29,11 @@
 
 #savenote {
     display: block;
+}
+
+.navbar-brand, a {
+    text-decoration: none; 
+    color: black; 
 }
 
 /* 
