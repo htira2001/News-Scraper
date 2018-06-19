@@ -1,3 +1,4 @@
+// Require Mongoose //
 var mongoose = require("mongoose");
 
 // Save a reference to the Schema constructor //
@@ -29,10 +30,10 @@ var ArticleSchema = new Schema({
     // "note" is an object that stores a Note id //
     // The ref property links the ObjectId to the Note model //
     // This allows us to populate the Article with an associated Note //
-    note: {
+    note: [{
         type: Schema.Types.ObjectId,
         ref: "Note"
-    }
+    }]
 });
 
 // This creates model from the above schema, using mongoose's model method //
