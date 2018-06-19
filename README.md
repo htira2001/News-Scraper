@@ -1,4 +1,4 @@
-:newspaper: # New York Times Scraper
+:newspaper: New York Times Scraper
 
 The New York Times Scraper is an app that scrapes the newest 20 articles from the New York Times website (https://www.newtyorktimes.com) and presents them in a tasteful, clean interface in which the user can click on and comment on individual stories.  
 
