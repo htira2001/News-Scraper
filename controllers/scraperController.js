@@ -1,3 +1,4 @@
+// Dependencies //
 var express = require("express");
 
 var router = express.Router();
@@ -18,16 +19,16 @@ router.get("/", function(req, res) {
   res.render("index");
 });
 
-// This will get the articles scraped and saved in db and show them in list.
+// This will get the articles scraped and saved in db and show them in list //
 router.get("/savedarticles", function(req, res) {
 
-  // Grab every doc in the Articles array
+  // Grab every doc in the Articles array //
   Article.find({}, function(error, doc) {
     // Log any errors
     if (error) {
       console.log(error);
     }
-    // Or send the doc to the browser as a json object
+    // Or send the doc to the browser as a jSON object //
     else {
       var hbsArticleObject = {
         articles: doc
@@ -38,7 +39,7 @@ router.get("/savedarticles", function(req, res) {
   });
 });
 
-// A GET request to scrape the echojs website
+// A GET request to scrape the New York Times website
 router.post("/scrape", function(req, res) {
 
   // First, we grab the body of the html with request
@@ -48,19 +49,22 @@ router.post("/scrape", function(req, res) {
 
     // Make emptry array for temporarily saving and showing scraped Articles.
     var scrapedArticles = {};
-    // Now, we grab every h2 within an article tag, and do the following:
-    $("article h2").each(function(i, element) {
 
-      // Save an empty result object
+    // Now, we grab every h2 within an article tag, and do the following:
+    $("article").each(function(i, element) {
+
+      // Save an empty result object //
       var result = {};
 
-      // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this).children("a").text();
-
-      console.log("What's the result title? " + result.title);
+      // Add the text and href of every link, and save them as properties of the result object //
       
-      result.link = $(this).children("a").attr("href");
+      result.title = $(this).children("h2").text();
+      
+      result.summary = $(this).children(".summary").text();
+      console.log("This is the summary: " + result.summary);
 
+      result.link = $(this).children("h2").children("a").attr("href");
+      
       scrapedArticles[i] = result;
 
     });
@@ -108,15 +112,11 @@ router.post("/save", function(req, res) {
 
 router.get("/delete/:id", function(req, res) {
 
-  console.log("ID is getting read for delete" + req.params.id);
-
-  console.log("Able to activate delete function.");
-
   Article.findOneAndRemove({"_id": req.params.id}, function (err, offer) {
     if (err) {
       console.log("Not able to delete:" + err);
     } else {
-      console.log("Able to delete, Yay");
+      console.log("Successfully deleted!");
     }
     res.redirect("/savedarticles");
   });
@@ -132,7 +132,7 @@ router.get("/notes/:id", function(req, res) {
     if (err) {
       console.log("Not able to delete:" + err);
     } else {
-      console.log("Able to delete, Yay");
+      console.log("Successfully deleted!");
     }
     res.send(doc);
   });
@@ -153,7 +153,7 @@ router.get("/articles/:id", function(req, res) {
       console.log("Not able to find article and get notes.");
     }
     else {
-      console.log("We are getting article and maybe notes? " + doc);
+      console.log("We are getting article and possible notes " + doc);
       res.json(doc);
     }
   });
@@ -180,7 +180,6 @@ router.post("/articles/:id", function(req, res) {
         if (err) {
           console.log("Cannot find article.");
         } else {
-          console.log("On note save we are getting notes? " + doc.notes);
           res.send(doc);
         }
       });
