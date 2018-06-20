@@ -3,19 +3,36 @@ body {
     background-image: url("../../images/world-newspapers.jpg");
 }
 
+#navBar {
+    background-color: white; 
+    margin-bottom: 5px; 
+}
+
 #bodyinput {
     width: 50%;
 }
 
 .jumbotron {
-    background-color: red;
 	overflow: hidden;
-    background-size: 50%;
+    background-size: 70%;
     background-position: center;
-    background-image: url("../../images/smoke.jpeg");
+    /* background-image: url("../../images/smoke.jpeg"); */
+    background-image: url("../../images/yellow.jpeg");
+    padding-top: 5px;
     background-repeat: no-repeat;
     height: 400px;
     width: 100%;
+}
+
+.pictureText {
+    font-weight: 500;
+    font-size: 35px; 
+    font-family: 'Cinzel', serif;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; 
 }
 
 .panel-heading.row {
