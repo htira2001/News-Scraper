@@ -23,13 +23,13 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  {{!-- <div class="row">
     <div class="col-md-12">
       {{#each articles}}
         <div class="panel panel-default">
           <div class="panel-heading row">
             <div class="col-s-9">
-              <h4 class="panel-title pull-left">{{this.title}}</h>
+              <h4 class="panel-title">{{this.title}}</h4>
             </div>
             <div class="col-s-3">
               <form action="/save" method="POST">
@@ -41,11 +41,11 @@
           </div>
           <nbsp></nbsp>
           <div class="row">
-            <div class="col-s-12>">
+            <div class="col-m-12>">
               <div class="panel-body">
                 <p>{{this.summary}}</p>
                 <nbsp></nbsp>
-                <p>{{this.link}}</p>
+                <a href={{this.link}} target="_blank">{{this.link}}</a>
                 <nbsp></nbsp>
               </div>
             </div>
@@ -54,4 +54,34 @@
       {{/each}}
     </div>
   </div>
+</div> --}}
+
+
+<div class="col-md-12">
+        {{#if articles}}
+            {{#each articles}}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>{{this.title}}</h4>
+                </div>
+                <div class="panel-body">
+                  <form action="/save" method="POST">
+                    <input id="article-title" type="hidden" name="title" value="{{this.title}}">
+                    <input id="article-link"  type = "hidden" name="link" value={{this.link}}>
+                    <p> {{this.summary}}</p>
+                    <a href={{this.link}} target="_blank">{{this.link}}</a>
+                    <br><br>
+                    <button type="submit" class="btn btn-success pull-right">Save Article</button>
+                  </form>
+                </div>
+            </div>
+            {{/each}}
+        {{else}}
+        <div class="panel panel-default">
+            <div class="panel-body">
+            <h4>Uh Oh. Looks like we don't have any new articles.</h4>
+            </div>
+         </div>
+        {{/if}}
+    </div>
 </div>
